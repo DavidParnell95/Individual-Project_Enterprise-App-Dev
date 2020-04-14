@@ -11,13 +11,20 @@
         <!-- Bootstrap -->
         <!-- SRC: https://startbootstrap.com/snippets/registration-page/-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     </head>
 
     <body>
@@ -32,7 +39,7 @@
                   <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                       <li class="nav-item logged-in">
-                        <a class="link modal-trigger" data-target="modal-add" href="#"><i class="fa fa-plus" aria-hidden="true"></i>    New Game</a>
+                        <a class="link modal-trigger" data-target="modal-create" href="#"><i class="fa fa-plus" aria-hidden="true"></i>    New Game</a>
                       </li>
                       <li class="nav-item logged-in">
                         <a class="link modal-trigger" data-target="modal-account" href="#"><i class="fa fa-address-card" aria-hidden="true"></i>  Account</a>
@@ -57,10 +64,32 @@
                     <div class="account-details">
 
                     </div>
-                
-                    
                 </div>
             </div>
+
+            <!-- Create -->
+            <div id="modal-create" class="modal">
+              <div class="modal-content" style="width: 30%;">
+                <div class="head">
+                  <h4>New Game</h4>
+                </div>
+                <form id="create-form">
+                  <p>Date: <span id="datetime"></span></p>
+
+                  <button class="matBTN">Create Game</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Page Content -->
+            <div class="container">
+              <div class="card border-0 shadow my-5">
+                <div class="card-body p-5">
+                  
+                </div>
+              </div>
+            </div>
+
         </div>
 
         <!-- Logged out-->
@@ -113,5 +142,23 @@
 
         <script src="menu.js"></script>
         <script src="modal.js"></script>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+        
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyAEIcmIxKAGikhqYGdUqnyqjJ9KM1IzvRI",
+          authDomain: "quarentine-games.firebaseapp.com",
+          databaseURL: "https://quarentine-games.firebaseio.com",
+          projectId: "quarentine-games",
+          storageBucket: "quarentine-games.appspot.com",
+          messagingSenderId: "171053268575",
+          appId: "1:171053268575:web:3a023695c96253a6d665ea"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
     </body>
 </html>

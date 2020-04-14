@@ -5,7 +5,11 @@
   
   body {
     background: #000000;
-    background: linear-gradient(to right, #000000, #495057);
+    background: linear-gradient(to right, #5d4157, #a8caba);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
   }
   
   .card-signin {
