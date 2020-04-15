@@ -1,0 +1,99 @@
+extends layout
+
+block content
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='#') Quarentine Games
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item.logged-in
+              a.link.modal-trigger(data-target='modal-create', href='#')
+                i.fa.fa-plus(aria-hidden='true')
+                |  New Game
+            li.nav-item.logged-in
+              a.link.modal-trigger(data-target='modal-account', href='#')
+                i.fa.fa-address-card(aria-hidden='true')
+                |  Account
+            li.nav-item.logged-in
+              a#logout.link(href='#')
+                i.fa.fa-sign-out(aria-hidden='true')  Logout
+              i.fa.fa-sign-out(aria-hidden='true')
+            i.fa.fa-sign-out(aria-hidden='true')
+          i.fa.fa-sign-out(aria-hidden='true')
+        i.fa.fa-sign-out(aria-hidden='true')
+      i.fa.fa-sign-out(aria-hidden='true')
+    i.fa.fa-sign-out(aria-hidden='true')
+      // Logged in
+      .logged-in
+        // Modals
+        // Account Modal
+        #modal-account.modal
+          .modal-content(style='width: 30%;')
+            .head
+              h4.mod-header Account Details
+            .account-details
+        // Create
+        #modal-create.modal
+          .modal-content(style='width: 30%;')
+            .head
+              h4 New Game
+            form#create-form
+              p
+                | Date: 
+                span#datetime
+              button.matBTN Create Game
+        // Page Content
+        .container
+          .card.border-0.shadow.my-5
+            .card-body.p-5
+      // Logged out
+      .logged-out
+        .container.logged-out
+          .row
+            .col-lg-10.col-xl-9.mx-auto
+              .card.card-signin.flex-row.my-5
+                .card-img-left.d-none.d-md-flex
+                  // Background image for card set in CSS!
+                .card-body
+                  h4.card-title.text-center Register
+                  form.form-signin
+                    .form-label-group
+                      input#inputUserame.form-control(type='text', placeholder='Username', required='', autofocus='')
+                      label(for='inputUserame') Username
+                    .form-label-group
+                      input#inputEmail.form-control(type='email', placeholder='Email address', required='')
+                      label(for='inputEmail') Email address
+                    hr
+                    .form-label-group
+                      input#inputPassword.form-control(type='password', placeholder='Password', required='')
+                      label(for='inputPassword') Password
+                    .form-label-group
+                      input#inputConfirmPassword.form-control(type='password', placeholder='Password', required='')
+                      label(for='inputConfirmPassword') Confirm password
+                    button.matBTN.btn-lg.btn-block.text-uppercase(type='submit') Register
+                    a.d-block.text-center.mt-2.small(href='#') Sign In
+                    hr.my-4
+                    // google sign in
+                    button.btn.btn-lg.btn-google.btn-block.text-uppercase(type='submit')
+                      i.fab.fa-google.mr-2
+                      |  Sign up with Google
+      script(src='menu.js')
+      script(src='modal.js')
+      // The core Firebase JS SDK is always required and must be listed first
+      script(src='https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js')
+      script.
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+        apiKey: "AIzaSyAEIcmIxKAGikhqYGdUqnyqjJ9KM1IzvRI",
+        authDomain: "quarentine-games.firebaseapp.com",
+        databaseURL: "https://quarentine-games.firebaseio.com",
+        projectId: "quarentine-games",
+        storageBucket: "quarentine-games.appspot.com",
+        messagingSenderId: "171053268575",
+        appId: "1:171053268575:web:3a023695c96253a6d665ea"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
