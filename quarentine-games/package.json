@@ -1,0 +1,26 @@
+{
+  "name": "quarentine-games",
+  "version": "1.0.0",
+  "description": "Enterprise Application Development Individual Project, game suggestion site for Covid-19 quarentine ",
+  "main": "server.js",
+  "dependencies": {
+    "express-handlebars": "^4.0.3",
+    "express": "^4.17.1",
+    "express-handler": "^0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidParnell95/Individual-Project_Enterprise-App-Dev.git"
+  },
+  "author": "David Parnell <davidparnell1995@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidParnell95/Individual-Project_Enterprise-App-Dev/issues"
+  },
+  "homepage": "https://github.com/DavidParnell95/Individual-Project_Enterprise-App-Dev#readme"
+}

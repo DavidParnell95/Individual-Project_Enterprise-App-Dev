@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<title>Quarentine-Games</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="TheQuest Gaming Magazine Template">
+	<meta name="keywords" content="gaming, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Favicon -->
+	<link href="images/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/magnific-popup.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="css/animate.css"/>
+	<link rel="stylesheet" href="css/slicknav.min.css"/>
+
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="css/style.css"/>
+
+
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<a href="index.html" class="site-logo">
+			<li class="title">Quarentine-Games</li>
+		</a>
+		<ul class="main-menu">
+			<li class="logged-out">
+                <a href="#" class="modal-trigger" data-target="modal-login">Sign-in</a>
+            </li>
+            
+            <li class="logged-out">
+                <a href="#" class="modal-trigger" data-target="modal-register">Register</a>
+            </li>
+			
+            <li>
+                <a href="#">Games</a>
+            </li>
+			
+            <li class="logged-in" style="display: none;">
+                <a href="#"class="modal-trigger" data-target="modal-create">New Game</a>
+            </li>
+		</ul>
+		<div class="header-add">
+			<img src="images/banner.jpg" alt="">
+		</div>
+	</header>
+	<!-- Header section end -->
+
+    <!-- Modals -->
+    <!-- Create Game -->
+    <div id="modal-create" class="modal">
+		<div class="modal-content" style="width: 30%;">
+			<div class="head">
+				<h4 class="mod-header">Add Game</h4>
+			</div>
+		
+			<form id="create-form">
+				<p>Date: <span id="datetime"></span></p>
+				<script>
+					var dt = new Date();
+					document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+				</script>
+				
+                <!-- Game Title Entry-->
+                <input type="text" id="Gtitle" name="Gtitle"><br>
+                <label for="Gtitle">Title:</label>
+				
+                <!-- Game Review Entry-->
+				<textarea id="Greview" rows="10" cols="50"></textarea>
+                <label for="Greview">Review:</label>
+
+                <!-- Cover photo upload -->
+                <input type="file" id="img-up" name="img-up" accept="image/*">
+                <label for="img-up">Select image</label>
+
+				<button class="matBTN">Add Game</button>
+
+			</form>
+		</div>
+	</div>
+
+    <!-- Log-in-->
+    <div id="modal-login" class="modal">
+        <div class="modal-content" style="width: 30%;">
+            <div class="head">
+                <h4 class="mod-health">Login</h4>
+            </div>
+
+            <form id="login-form">
+                <input type="email" id="login-email" required />
+                <label for="login-email">Email Address:</label>
+
+                <input type="password" id="login-password" required />
+                <label for="login-password">Password:</label>
+
+                <button class="site-btn">Add Game</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register -->
+    <div id="modal-register" class="modal">
+        <div class="modal-content" style="width: 30%;">
+            <div class="head">
+                <h4 class="mod-health">Register</h4>
+            </div>
+
+            <form id="login-form">
+                <input type="email" id="register-email" required />
+                <label for="register-email">Email Address:</label>
+
+                <input type="password" id="login-password" required />
+                <label for="register-password">Password:</label>
+
+                <button class="site-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+    {{{body}}}
+
+
+    
+
+    
+	<!-- Footer section -->
+	<div class="footer-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="footer-widget">
+						<div class="about-widget">
+							<img src="img/logo.png" alt="">
+							<p>Quarentine-Games doesn't acknowledge 
+                                any customer complaints and will not
+                                make any changes to address such compaints. 
+                                Quarentine-Games is just a site to give a few 
+                                suggestions to people during lockdown, nothing more.
+                            </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-sm-6">
+					<div class="footer-widget">
+						<h2 class="fw-title">Usfull Links</h2>
+						<ul>
+							<li><a href="https://store.steampowered.com/">Steam</a></li>
+							<li><a href="https://www.gog.com/">GOG</a></li>
+							<li><a href="https://store.playstation.com/en-ie/home/games">Playstation Store</a></li>
+							<li><a href="https://www.xbox.com/en-IE/microsoft-store">Microsoft Store</a></li>
+							<li><a href="https://www.epicgames.com/store/en-US/">Epic Games Store</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-sm-6">
+					<div class="footer-widget">
+						<h2 class="fw-title">Services</h2>
+						<ul>
+							<li><a href="https://github.com/DavidParnell95/Individual-Project_Enterprise-App-Dev">Source Code</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+			<div class="copyright"><a href=""><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+		</div>
+	</div>
+	<!-- Footer section end -->
+															
+	<!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.slicknav.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/circle-progress.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
