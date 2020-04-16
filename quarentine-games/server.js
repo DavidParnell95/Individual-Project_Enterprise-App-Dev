@@ -2,6 +2,8 @@
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+
 //Create handlebars with default layout
 var handlebars = require('express-handlebars').create({
     defaultLayout: 'main'
@@ -12,11 +14,36 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 8080);
 app.use(express.static(__dirname+ '/public'));
+app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get('/', function(req,res, next){
     res.render('home', {
         layout: 'main',
     });
+});
+
+//Create review
+app.post('/new', function(req, res,next){
+    console.log(req.body);//Print req body to console
+    //TO DO: implement add to DB 
+
+    res.render('new');
+});
+
+//Login 
+app.post('/login', function(req, res,next){
+    console.log(req.body);//Print req body to console
+    //TO DO: implement log in and set up UI
+
+    res.render('login');
+});
+
+//Register
+app.post('/register', function(req, res,next){
+    console.log(req.body);//Print req body to console
+    //TO DO: implement add to Auth 
+
+    res.render('register');
 });
 
 //Handle Errors

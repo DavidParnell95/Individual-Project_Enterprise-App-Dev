@@ -18,6 +18,25 @@ body {
 	font-smoothing: antialiased;
 }
 
+.modal-content{
+	padding-left: 5px;
+	position: fixed;
+	top: 35%;
+	left: 45%;
+	transform: translate(-35%,-45%);
+	width: 30%;
+	font-weight: bold;
+}
+
+.mod-header{
+	color: #ffffff;
+	width: 90%;
+}
+
+.head{
+	background-color: rgba(53,53,53);
+}
+
 h1,
 h2,
 h3,
@@ -61,6 +80,11 @@ p {
 
 img {
 	max-width: 100%;
+}
+
+.title{
+	color: white;
+	font-size: x-large;
 }
 
 input:focus,
@@ -233,7 +257,9 @@ Header section
 .site-logo {
 	display: inline-block;
 	padding: 21px 55px 20px;
-	background: #222222;
+	background: #353535;
+	font-size: x-large;
+	color: white;
 }
 
 .main-menu {
@@ -246,6 +272,7 @@ Header section
 
 .main-menu li {
 	display: inline-block;
+	border-left: 1px dotted grey;
 }
 
 .main-menu li a {

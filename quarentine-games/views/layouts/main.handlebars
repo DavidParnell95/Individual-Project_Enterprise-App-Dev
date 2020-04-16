@@ -39,28 +39,28 @@
 
 	<!-- Header section -->
 	<header class="header-section">
-		<a href="index.html" class="site-logo">
-			<li class="title">Quarentine-Games</li>
+		<a href="/" class="site-logo">
+			Quarentine-Games
 		</a>
 		<ul class="main-menu">
-			<li class="logged-out">
-                <a href="#" class="modal-trigger" data-target="modal-login">Sign-in</a>
-            </li>
-            
-            <li class="logged-out">
-                <a href="#" class="modal-trigger" data-target="modal-register">Register</a>
-            </li>
-			
             <li>
                 <a href="#">Games</a>
             </li>
 			
-            <li class="logged-in" style="display: none;">
+            <li>
                 <a href="#"class="modal-trigger" data-target="modal-create">New Game</a>
+            </li>
+
+			<li>
+                <a href="#" class="modal-trigger logged-out" data-target="modal-login">Sign-in</a>
+            </li>
+            
+            <li>
+                <a href="#" class="modal-trigger logged-out" data-target="modal-register">Register</a>
             </li>
 		</ul>
 		<div class="header-add">
-			<img src="images/banner.jpg" alt="">
+			<img src="images/bann.png" alt="">
 		</div>
 	</header>
 	<!-- Header section end -->
@@ -68,12 +68,12 @@
     <!-- Modals -->
     <!-- Create Game -->
     <div id="modal-create" class="modal">
-		<div class="modal-content" style="width: 30%;">
+		<div class="modal-content">
 			<div class="head">
 				<h4 class="mod-header">Add Game</h4>
 			</div>
 		
-			<form id="create-form">
+			<form action="/new" method="POST" id="create-form">
 				<p>Date: <span id="datetime"></span></p>
 				<script>
 					var dt = new Date();
@@ -81,18 +81,24 @@
 				</script>
 				
                 <!-- Game Title Entry-->
-                <input type="text" id="Gtitle" name="Gtitle"><br>
-                <label for="Gtitle">Title:</label>
+                <div class="input-field">
+					<label for="Gtitle">Title:</label>
+					<input type="text" id="Gtitle" name="Gtitle"><br>
+				</div>
 				
                 <!-- Game Review Entry-->
-				<textarea id="Greview" rows="10" cols="50"></textarea>
-                <label for="Greview">Review:</label>
+				<div class="input-field">
+					Review:<br>
+					<textarea id="Greview" name="Greview" rows="10" cols="50"></textarea>
+				</div>
 
                 <!-- Cover photo upload -->
-                <input type="file" id="img-up" name="img-up" accept="image/*">
-                <label for="img-up">Select image</label>
+                <div class="input-field">
+					<input type="file" id="img-up" name="img-up" accept="image/*">
+                	<label for="img-up">Select image</label>
+				</div>
 
-				<button class="matBTN">Add Game</button>
+				<input type="submit" value="Add Game" class="site-btn">
 
 			</form>
 		</div>
@@ -102,17 +108,21 @@
     <div id="modal-login" class="modal">
         <div class="modal-content" style="width: 30%;">
             <div class="head">
-                <h4 class="mod-health">Login</h4>
+                <h4>Login</h4>
             </div>
 
-            <form id="login-form">
-                <input type="email" id="login-email" required />
-                <label for="login-email">Email Address:</label>
+            <form action="/login" method="POST" id="login-form">
+                <div class="input-field">
+					<input type="email" id="login-email" placeholder="Email" name="login-email" required />
+                	<label for="login-email">Email Address:</label>
+				</div>
 
-                <input type="password" id="login-password" required />
-                <label for="login-password">Password:</label>
+                <div class="input-field">
+					<input type="password" id="login-password" placeholder="Password" name="login-password" required />
+                	<label for="login-password">Password:</label>
+				</div>
 
-                <button class="site-btn">Add Game</button>
+                <input type="submit" value="Log In" class="site-btn">
             </form>
         </div>
     </div>
@@ -124,14 +134,18 @@
                 <h4 class="mod-health">Register</h4>
             </div>
 
-            <form id="login-form">
-                <input type="email" id="register-email" required />
-                <label for="register-email">Email Address:</label>
+            <form action="/register" method="POST" id="login-form">
+                <div class="input-field">
+					<input type="email" id="register-email" placeholder="Email" name="reg-email" required />
+                	<label for="register-email">Email Address:</label>
+				</div>
 
-                <input type="password" id="login-password" required />
-                <label for="register-password">Password:</label>
+                <div class="input-field">
+					<input type="password" id="login-password" placeholder="Password" name="reg-password" required />
+                	<label for="register-password">Password:</label>
+				</div>
 
-                <button class="site-btn">Register</button>
+                <input type="submit" value="Register" class="site-btn">
             </form>
         </div>
     </div>
@@ -197,6 +211,9 @@
 	<script src="js/circle-progress.min.js"></script>
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/modal.js"></script>
+	<script src="js/menu.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 	</body>
 </html>
