@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "quarentine-games-d1de9",
+  "private_key_id": "7856bc179f25ddb09972b92c6c90432c8927224a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1ZoBRGYes6mnQ\n8+IfeYYuqKKr5syOkIs9DydOz5MuHXJUFtPV/vOxGnEbAJEuAmu9Jf5cKnWoCbXJ\nmCQ6BAGA5ZoOm4TkkqXjpALhsxaeJqmJAmWWB75ulw+z0dBb7oNpQnsHSwMYSnpE\nRC/o5gLeVcTN73FFNDaVVCIOD7CjQ80ysMEM8nIunT0bURjR/uHEnpG68flHzqY8\nuA8njlWZHiSN4WzzgotaqoyErVZZLM8DRjWtFwqwcgIjFJ8DxvTR3jH9CS8EvrYf\nalp6rlOS2Rl4fFzacYUYYC6QeZwjaLemRc0akff9PGwP0AJdt23ZxdbgVPiHHfOI\nlWaj/UI5AgMBAAECggEACKEhVjpTr6XQdjCT6jwQEQ9+pZTWLatcpFagimmU2SsX\ncZP1wdwItb0fR6c66327/a8yrtRqQnMrzbT0zDm9OeeHm6L0VcyleEh+G+82vTvz\nnAvxeeCmbiu2LdoRAmk8oSOY0gZUgFxSqAViY2mbFf6Yh9TDMQVEhM1leAEbvbh7\nIb6m7DzpnQjbxIZ/P34d/g6oQo5W+o0AD1YQ2oH1RtPv1lu5OTwzcr9DFKsXCyG9\n38eu9PGxiTsGcf82jmIVTgRsOkWN/Br6nVPTry/rQj0AOFWjhMbbB3h2OuFlNQ14\nK1R0+0xkdsjCF8gD/VKv8q3Ro12Pfvz8DHKKRoI83QKBgQDiUYstZg3LB0LXY7mx\naGh8IYkm4NS31ghX6iE3vJdU+W6xBkUmA+ExFLOKzDUlYhKmmr8DuyHJPBSOWG/m\nzc2Qb7eoIXGbToF8iftEHLxEI968Ct2SqT3uTxC9XrPIqmmf7gHMFI9vQArRRiNK\nDPgazGJOH8LmnB5utKt1aqiFtwKBgQDNMN5bjPWGjy/aERKQcTiqpvHBIosNF8fl\n5wLi3dQfS/e16EQKUBruysPPViOjjImclRHLqc9Huo18y3caA0kYLLCvyqPYcNRc\n1vNzulrarUe7cnL7Jugdsrdk4HUMHvkGhRzdiyN7GAUACw4K1pcYJb2c9tSsvMix\nIhdtl+H3jwKBgQDPCQvKFy8NCXJzOe6Yxcu3qrIeF9Vg63KsgimrJGJIQPqrBPJj\nCW+Lh8WLdq4zqZkoQi31ys3omoavhWWw/ZpMxHZ9X0LfcZzxAgUTVTpBF5Nd8I6r\n6RkXlcrZgfXz3zlLLd8FA9YHTs3WjlQgHOcnFMvlbhbNAgqw+aRUgKLz1wKBgCVS\n20+J32tfhlPDQT426hjYjycTcnmqNrlSAQtlUF11AxT6r820boG7Lkz7nTX1rV5n\nGzqRo9unSm9Fz19S86vLDUSctpr7QxW0H8qQPlCCroahNdsLY7NrO8LEtWXECIYw\nFmUSFx0f7GDqod5E1G0XCFuR5nOZT2QxEFPmCbtvAoGAcyenZp2vxt+HXnHggDDp\naImjwIY+LRpPCv5kTtlNoiNAbbI9aycCdrVHM6f+dSTHF3dHyHnTQVkaZk3wOeyk\nQ2oXRiOO7/ujbJoT/vWf+gs8k/GSA2674tEqtg9v2nz8aEcN+venOG2Vx9Xj7tMY\nrOyFy0j4EQ3boZxG1WxYrA8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "quarentine-games-d1de9@appspot.gserviceaccount.com",
+  "client_id": "101589948332991828729",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/quarentine-games-d1de9%40appspot.gserviceaccount.com"
+}

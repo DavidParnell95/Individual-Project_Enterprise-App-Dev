@@ -1,5 +1,15 @@
 'use strict';
 var express = require('express');
+
+// Firebase set up
+var admin = require('firebase-admin');
+let serviceAccount = require("./quarentine-games-d1de9-7856bc179f25.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+})
+const db = admin.firestore();
+
 var app = express();
 
 var bodyParser = require('body-parser');
@@ -18,8 +28,8 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get('/', function(req,res, next){
     res.render('home', {
-        layout: 'main',
-    });
+        layout: 'main'}
+    );
 });
 
 //Create review

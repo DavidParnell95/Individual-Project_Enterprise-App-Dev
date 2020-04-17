@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/slicknav.min.css"/>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css"/>
@@ -48,7 +49,7 @@
             </li>
 			
             <li>
-                <a href="#"class="modal-trigger" data-target="modal-create">New Game</a>
+                <a href="#"class="modal-trigger logged-in" data-target="modal-create">New Game</a>
             </li>
 
 			<li>
@@ -58,6 +59,10 @@
             <li>
                 <a href="#" class="modal-trigger logged-out" data-target="modal-register">Register</a>
             </li>
+
+			<li>
+				<a href="#" id="logout" class="logged-in">Logout</a>
+			</li>
 		</ul>
 		<div class="header-add">
 			<img src="images/bann.png" alt="">
@@ -84,19 +89,33 @@
                 <div class="input-field">
 					<label for="Gtitle">Title:</label>
 					<input type="text" id="Gtitle" name="Gtitle"><br>
-				</div>
+				</div><br>
+
+				<label for="score">Score:</label>
+				<select name="score" id="score" required>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select><br>
 				
                 <!-- Game Review Entry-->
 				<div class="input-field">
 					Review:<br>
 					<textarea id="Greview" name="Greview" rows="10" cols="50"></textarea>
-				</div>
+				</div><br>
 
                 <!-- Cover photo upload -->
                 <div class="input-field">
 					<input type="file" id="img-up" name="img-up" accept="image/*">
                 	<label for="img-up">Select image</label>
-				</div>
+				</div><br>
 
 				<input type="submit" value="Add Game" class="site-btn">
 
@@ -106,23 +125,25 @@
 
     <!-- Log-in-->
     <div id="modal-login" class="modal">
-        <div class="modal-content" style="width: 30%;">
+        <div class="modal-content">
             <div class="head">
-                <h4>Login</h4>
+                <h4 class="mod-header">Login</h4>
+				
             </div>
 
-            <form action="/login" method="POST" id="login-form">
+            <form id="login-form">
                 <div class="input-field">
-					<input type="email" id="login-email" placeholder="Email" name="login-email" required />
-                	<label for="login-email">Email Address:</label>
+					<label for="login-email">Email Address:</label><br>
+					<input type="email" id="login-email" placeholder="Email" name="login-email" autocomplete="on" required />
 				</div>
 
                 <div class="input-field">
-					<input type="password" id="login-password" placeholder="Password" name="login-password" required />
-                	<label for="login-password">Password:</label>
+					<label for="login-password">Password:</label><br>
+					<input type="password" id="login-password" placeholder="Password" name="login-password" autocomplete="on" required />
 				</div>
+				<br>
 
-                <input type="submit" value="Log In" class="site-btn">
+                <button id="btn-login" class="site-btn">Login</button>
             </form>
         </div>
     </div>
@@ -131,31 +152,33 @@
     <div id="modal-register" class="modal">
         <div class="modal-content" style="width: 30%;">
             <div class="head">
-                <h4 class="mod-health">Register</h4>
+                <h4 class="mod-header">Register</h4>
             </div>
 
-            <form action="/register" method="POST" id="login-form">
+            <form id="register-form">
                 <div class="input-field">
-					<input type="email" id="register-email" placeholder="Email" name="reg-email" required />
-                	<label for="register-email">Email Address:</label>
+                	<label for="reg-email">Email Address:</label><br>
+					<input type="email" id="reg-email" placeholder="Email" name="reg-email" autocomplete="on" required />
 				</div>
 
                 <div class="input-field">
-					<input type="password" id="login-password" placeholder="Password" name="reg-password" required />
-                	<label for="register-password">Password:</label>
+					<label for="reg-password">Password:</label><br>
+					<input type="password" id="reg-password" placeholder="Password" name="reg-password" autocomplete="off" required />
 				</div>
 
-                <input type="submit" value="Register" class="site-btn">
+				<div class="input-field">
+					<label for="reg-conf">Confirm Password:</label><br>
+					<input type="password" id="reg-conf" placeholder="Password" name="reg-password" autocomplete="off" required />
+				</div>
+				<br>
+
+                <button id="btn-reg" class="site-btn">Register</button>
             </form>
         </div>
     </div>
 
     {{{body}}}
 
-
-    
-
-    
 	<!-- Footer section -->
 	<div class="footer-section">
 		<div class="container">
@@ -163,7 +186,6 @@
 				<div class="col-lg-3">
 					<div class="footer-widget">
 						<div class="about-widget">
-							<img src="img/logo.png" alt="">
 							<p>Quarentine-Games doesn't acknowledge 
                                 any customer complaints and will not
                                 make any changes to address such compaints. 
@@ -213,7 +235,70 @@
 	<script src="js/main.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/menu.js"></script>
+	<script src="js/conn.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+	
+	<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+    		apiKey: "AIzaSyAzKHySgwYqxPhcjO4VplzaIN4ErvTuzSY",
+    		authDomain: "quarentine-games-d1de9.firebaseapp.com",
+    		databaseURL: "https://quarentine-games-d1de9.firebaseio.com",
+    		projectId: "quarentine-games-d1de9",
+    		storageBucket: "quarentine-games-d1de9.appspot.com",
+    		messagingSenderId: "237736373941",
+		    appId: "1:237736373941:web:91904c96f36113a55758fc"
+		};
+
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+
+		//Listen for auth state changes
+		firebase.auth().onAuthStateChanged(user =>{
+    	console.log(user);//Log current user 
+
+    	//Check if theres a user logged in
+    	if(user)
+    	{
+        	console.log('User logged in', user);
+        	//Check if user attempting to log in is an admin 
+        	user.getIdTokenResult().then(IdTokenResult => {
+            user.admin = IdTokenResult.claims.admin;
+            setupUI(user);
+
+        })
+
+        //Get reference to DB and get data
+        //onSnapshot reloads whenever db changes 
+        db.collection('entries').onSnapshot(snapshot=>
+        {
+            console.log(snapshot.docs);
+
+            //change menu items accordingly 
+            setupUI(user);
+        });
+    }
+
+    else
+    {
+        console.log('user logged out');
+        
+        //change menu items accordingly 
+        setupUI();
+        
+      
+    }
+})
+	</script>
+
+	<script src="js/conn.js"></script>
 
 	</body>
 </html>
