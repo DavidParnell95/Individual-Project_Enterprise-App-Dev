@@ -1,18 +1,35 @@
 'use strict';
 var express = require('express');
-
-// Firebase set up
-var admin = require('firebase-admin');
-let serviceAccount = require("./quarentine-games-d1de9-7856bc179f25.json");
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-})
-const db = admin.firestore();
+var mongoose = require('mongoose');
+var sessions = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
 var bodyParser = require('body-parser');
+
+//connect to Mongo
+mongoose.connect('mongodb://localhost/testForAuth');
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console,'connection error'));
+db.once('open', function(){
+
+});
+
+//user sessions for auth tracking 
+app.use(sessions({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: db
+    })
+}));
+
+//parse in-requsts
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 //Create handlebars with default layout
 var handlebars = require('express-handlebars').create({
@@ -29,7 +46,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.get('/', function(req,res, next){
     res.render('home', {
         layout: 'main'}
-    );
+    ); 
 });
 
 //Create review
@@ -39,6 +56,9 @@ app.post('/new', function(req, res,next){
 
     res.render('new');
 });
+
+
+const saltRounds =10;
 
 //Login 
 app.post('/login', function(req, res,next){
@@ -53,7 +73,7 @@ app.post('/register', function(req, res,next){
     console.log(req.body);//Print req body to console
     //TO DO: implement add to Auth 
 
-    res.render('register');
+    
 });
 
 //Handle Errors
