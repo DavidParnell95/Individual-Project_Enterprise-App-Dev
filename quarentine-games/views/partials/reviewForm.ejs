@@ -1,0 +1,17 @@
+<div class="createReviewForm">
+    <label>Title:</label>
+    <input type="text" name="title" value="<%= review.title %>">
+
+    <label>Genre:</label>
+    <select name="genre">
+        <% genres.forEach(genre => {
+            <% if(genre.id == review,genre) {%>
+                <option selected label="<%= genre.name %>" value="<%= genre.id %>"></option>
+            <% }) %>
+            <% else { %>
+                <option label="<%= genre.name %>" value="<%= genre.id %>"></option>
+            <% } %>
+
+
+    </select>
+</div>

@@ -1,0 +1,12 @@
+<div>
+    <h2 class="page-header"><%= genre.name %></h2>
+<div class="btn-row">
+  <a class="btn btn-primary" href="/genre/<%= genre.id %>/edit">Edit</a>
+  <%- include('../partials/deleteForm',
+              { url: `/genre/${genre.id}` }) %>
+</div>
+<% if (reviewsByAuthor.length > 0) { %>
+  <h2 class="page-header">Reviews By Author</h2>
+  <%- include('../partials/reviewGrid', { Reviews: reviewsByAuthor }) %>
+<% } %>
+</div>

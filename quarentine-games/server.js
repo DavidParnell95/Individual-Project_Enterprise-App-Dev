@@ -1,95 +1,37 @@
-'use strict';
-var express = require('express');
-var mongoose = require('mongoose');
-var sessions = require('express-session');
-var MongoStore = require('connect-mongo')(session);
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config({path: './.env'})
+  }
+
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts')
+const mongoose = require('mongoose');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
 
 var app = express();
 
 var bodyParser = require('body-parser');
+const indexRouter = require('./routes/index');
+const reviewRouter = require('./routes/review');
+const genreRouter = require('./routes/genre');
 
-//connect to Mongo
-mongoose.connect('mongodb://localhost/testForAuth');
-var db = mongoose.connection;
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.set('layout', 'layouts/layout')
+app.use(expressLayouts)
+app.use(express.static('public'))
 
-db.on('error', console.error.bind(console,'connection error'));
-db.once('open', function(){
+//Connect to mongoDB
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 
-});
-
-//user sessions for auth tracking 
-app.use(sessions({
-    secret: 'work hard',
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-        mongooseConnection: db
-    })
-}));
-
-//parse in-requsts
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-
-//Create handlebars with default layout
-var handlebars = require('express-handlebars').create({
-    defaultLayout: 'main'
-});
-
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
-
-app.set('port', process.env.PORT || 8080);
-app.use(express.static(__dirname+ '/public'));
-app.use(bodyParser.urlencoded({ extended: true}));
-
-app.get('/', function(req,res, next){
-    res.render('home', {
-        layout: 'main'}
-    ); 
-});
-
-//Create review
-app.post('/new', function(req, res,next){
-    console.log(req.body);//Print req body to console
-    //TO DO: implement add to DB 
-
-    res.render('new');
-});
+const db = mongoose.connection
+db.Review.remove({})
+db.on('error', error => console.error(error));
+db.once('open', () => console.log("Connected to Mongoose"))
 
 
-const saltRounds =10;
+app.use('/', indexRouter)
+app.use('/review', reviewRouter)
+app.use('/genre', genreRouter)
 
-//Login 
-app.post('/login', function(req, res,next){
-    console.log(req.body);//Print req body to console
-    //TO DO: implement log in and set up UI
-
-    res.render('login');
-});
-
-//Register
-app.post('/register', function(req, res,next){
-    console.log(req.body);//Print req body to console
-    //TO DO: implement add to Auth 
-
-    
-});
-
-//Handle Errors
-//404 not found
-app.use(function(req,res,){
-    res.status(404);
-    res.render('404');
-});
-
-//500 Server error
-app.use(function(err,req,res,next){
-    console.error(err.stack);
-    res.status(500);
-    res.render(500);
-});
-
-app.listen(app.get('port'), function(){
-    console.log('Express started on http://localhost:' +app.get('port'));
-})
+app.listen(process.env.PORT || 8080)

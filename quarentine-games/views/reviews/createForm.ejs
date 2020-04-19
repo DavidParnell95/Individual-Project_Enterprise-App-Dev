@@ -1,0 +1,41 @@
+<div class="form-row">
+    <div class="form-item">
+      <label>Title</label>
+      <input type="text" name="title" value="<review.title %>">
+    </div>
+    <div class="form-item">
+      <label>Genre</label>
+      <select name="genre">
+        <% agenre.forEach(genre => { %>
+          <% if (genre.id === review.genre) { %>
+            <option selected label="<%= genre.name %>" value="<%= genre.id %>">
+          <% } else { %>
+            <option label="<%= genre.name %>" value="<%= genre.id %>">
+          <% } %>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-item">
+      <label>Publish Date</label>
+      <input type="date" name="publishDate"
+            value="<%= review.publishDate == null ? '' : review.publishDate.toISOString().split('T')[0] %>">
+    </div>
+    <div class="form-item">
+      <label>Page Count</label>
+      <input type="number" name="pageCount" min="1" value="<%= review.pageCount %>">
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-item form-item-no-grow">
+      <label>Cover</label>
+      <input type="file" name="cover" class="review-cover filepond">
+    </div>
+    <div class="form-item">
+      <label>Description</label>
+      <textarea name="description"><%= review.description %></textarea>
+    </div>
+  </div>

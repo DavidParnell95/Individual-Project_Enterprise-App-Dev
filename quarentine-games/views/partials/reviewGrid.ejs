@@ -1,0 +1,9 @@
+<% reviewCoverClass = locals.large ? 'review-cover-large' : '' %>
+<% reviewGridClass = locals.large ? 'review-grid-large' : '' %>
+<div class="review-grid <%= reviewGridClass %>">
+  <% reviews.forEach(review => { %>
+    <a href="/books/<%= review.id %>">
+      <img class="book-cover <%= reviewCoverClass %>" src="<%= review.coverImagePath %>">
+    </a>
+  <% }) %>
+</div>
