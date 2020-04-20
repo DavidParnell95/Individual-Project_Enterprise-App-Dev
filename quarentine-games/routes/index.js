@@ -7,10 +7,14 @@ router.get('/', function(req,res){
 
 router.get('/login', (req, res) => {
     res.render('login.ejs');
-})
+});
 
 router.post('/login', (req,res) =>{
 
+});
+
+router.get('/register', (req,res) =>{
+    res.render('register.ejs');
 });
 
 

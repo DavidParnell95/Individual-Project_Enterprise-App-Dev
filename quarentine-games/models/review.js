@@ -1,17 +1,19 @@
 //Create Schema 
 
 const mongoose = require('mongoose')
+const coverImageBasePath = 'uploads/reviewCovers'//Target for uploaded files 
 
 const reviewSchema = new mongoose.Schema({
-    Title: {
+    title: {
         type: String,
         required: true
     },
 
-    Genre: {
+    genre: {
+        //Gets genre from schema
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'genre'
+        ref: 'Genre'
     },
     
     releaseDate:{
@@ -19,19 +21,20 @@ const reviewSchema = new mongoose.Schema({
         required: true
     },
 
-    Score:{
+    score:{
         type: Number,
         required: true
     },
 
-    Review:{
+    rev:{
         type: String,
         required: true
     },
 
-    reviewYear:{
+    reviewed:{
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
 
     coverImage:{
@@ -53,3 +56,4 @@ reviewSchema.virtual('coverImagePath').get(function(){
 })
 
 module.exports = mongoose.model('Review', reviewSchema)
+module.exports.coverImageBasePath = coverImageBasePath

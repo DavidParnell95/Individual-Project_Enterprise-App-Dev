@@ -1,9 +1,11 @@
-<div>
-    <h2 class="page-header">New Genre</h2>
-    <form action="/genres" method="POST">
-        <%- include('newGenre') %>
-        <div class="form-row form-row-end btn-row">
-            <a class="site-btn" style="background-color: red;" href="/">Cancel</a>
+<div class="section">
+    <h2 class="page-header">New Genre</h2><br>
+    <form action="/genre" method="POST">
+        <%- include('_genre_form') %>
+        
+        <br>
+        <div>
+            <a class="site-btn" style="background-color: red;" href="/genre">Cancel</a>
             <button class="site-btn" type="submit">Create</button>
         </div>
     </form>

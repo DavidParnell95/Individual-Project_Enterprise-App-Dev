@@ -4,17 +4,16 @@ const router = express.Router()
 const Genre = require('../models/genre')
 const Review = require('../models/review')
 
-// All Genres Route
+// All Genres Route, displays genres
 router.get('/', async (req, res) => {
-  let searchOptions = {}
+  /*let searchOptions = {}
   if (req.query.name != null && req.query.name !== '') {
     searchOptions.name = new RegExp(req.query.name, 'i')
-  }
+  }*/
   try {
-    const genres = await Genre.find(searchOptions)
+    const genres = await Genre.find({})
     res.render('genres/index', {
-      genres: genres,
-      searchOptions: req.query
+      genres: genres
     })
   } catch {
     res.redirect('/')
@@ -31,9 +30,11 @@ router.post('/', async (req, res) => {
   const genre = new Genre({
     name: req.body.name
   })
+
   try {
-    const newAuthor = await genre.save()
-    res.redirect(`genres/${newAuthor.id}`)
+    const newGenre = await genre.save()
+    //res.redirect(`genres/${newGenre.id}`)
+    res.redirect(`genre`)
   } catch {
     res.render('genres/new', {
       genre: genre,
@@ -48,7 +49,7 @@ router.get('/:id', async (req, res) => {
     const reviews = await Review.find({ genre: genre.id }).limit(6).exec()
     res.render('genres/show', {
       genre: genre,
-      booksByAuthor: reviews
+      reviewsByGenre: reviews
     })
   } catch {
     res.redirect('/')

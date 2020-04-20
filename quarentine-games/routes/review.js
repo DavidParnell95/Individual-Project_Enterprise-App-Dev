@@ -1,8 +1,22 @@
 const express = require('express')
 const router = express.Router()
+const multer = require('multer')
 const Review = require('../models/review')
 const Genre = require('../models/genre')
+
+const path = require('path')
+const uploadPath = path.join('public',Review.coverImageBasePath)
+
+//Array of accepted image types
 const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+
+const upload = multer ({
+  dest: uploadPath,
+  fileFilter: (req, file, callback) => {
+    callback(null, )
+  }
+})
+
 
 // All Reviews Route
 router.get('/', async (req, res) => {
@@ -11,10 +25,10 @@ router.get('/', async (req, res) => {
     query = query.regex('title', new RegExp(req.query.title, 'i'))
   }
   if (req.query.publishedBefore != null && req.query.publishedBefore != '') {
-    query = query.lte('publishDate', req.query.publishedBefore)
+    query = query.lte('releaseDate', req.query.publishedBefore)
   }
   if (req.query.publishedAfter != null && req.query.publishedAfter != '') {
-    query = query.gte('publishDate', req.query.publishedAfter)
+    query = query.gte('releaseDate', req.query.publishedAfter)
   }
   try {
     const reviews = await query.exec()
@@ -33,19 +47,24 @@ router.get('/new', async (req, res) => {
 })
 
 // Create Review Route
-router.post('/', async (req, res) => {
+router.post('/', upload.single('cover'), async (req, res) => {
+  //Check if file exists, get name if one does
+  const fileName = req.file != null ? req.filename : null
+
   const review = new Review({
     title: req.body.title,
     genre: req.body.genre,
-    publishDate: new Date(req.body.publishDate),
-    pageCount: req.body.pageCount,
-    description: req.body.description
+    releaseDate: new Date(req.body.releaseDate),
+    score: req.body.score,
+    coverImageName: fileName,
+    rev: req.body.rev
   })
-  saveCover(review, req.body.cover)
+  //saveCover(review, req.body.cover)
 
   try {
-    const newBook = await review.save()
-    res.redirect(`reviews/${newBook.id}`)
+    const newReview = await review.save()
+    //res.redirect(`reviews/${newReview.id}`)
+    res.redirect('/')
   } catch {
     renderNewPage(res, review, true)
   }
@@ -81,9 +100,9 @@ router.put('/:id', async (req, res) => {
     review = await Review.findById(req.params.id)
     review.title = req.body.title
     review.genre = req.body.genre
-    review.publishDate = new Date(req.body.publishDate)
-    review.pageCount = req.body.pageCount
-    review.description = req.body.description
+    review.releaseDate = new Date(req.body.releaseDate)
+    review.score = req.body.score
+    review.rev = req.body.rev
     if (req.body.cover != null && req.body.cover !== '') {
       saveCover(review, req.body.cover)
     }

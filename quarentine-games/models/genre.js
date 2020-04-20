@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Review = require('./review')
 
 const genreSchema = new mongoose.Schema({
-    Name: {
+    name: {
         type: String,
         required: true
     }
@@ -26,4 +26,4 @@ genreSchema.pre('remove', function(next){
     })
 })
 
-module.exports = mongoose.model('Review', genreSchema)
+module.exports = mongoose.model('Genre', genreSchema)
