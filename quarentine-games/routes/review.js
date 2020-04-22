@@ -79,7 +79,7 @@ router.put('/:id', async (req, res) => {
     review.rev = req.body.rev
 
     await review.save()
-    res.redirect(`/review/${review.id}`)
+    res.redirect(`/review`)
   } 
   catch {
     if (review != null) {
