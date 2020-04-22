@@ -1,0 +1,22 @@
+<% reviews.forEach(review => { %>
+    
+        <button class="collapsible">
+            <h4><%= review.title %></h4>
+            <p>Score: Score: <%= review.score %></p>
+        </button>
+
+        <div class="content">
+            <p>
+                Genre: <%= review.genre %>
+            </p>
+            <p>
+                <%= review.rev %> 
+            </p>
+            
+            <p>
+                <%= review.reviewed %>
+            </p>
+        </div>
+   
+
+<% }) %>

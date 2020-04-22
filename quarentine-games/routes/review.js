@@ -1,43 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const multer = require('multer')
-const Review = require('../models/review')
 const Genre = require('../models/genre')
-
-const path = require('path')
-const uploadPath = path.join('public',Review.coverImageBasePath)
-
-//Array of accepted image types
-const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
-
-const upload = multer ({
-  dest: uploadPath,
-  fileFilter: (req, file, callback) => {
-    callback(null, )
-  }
-})
+const Review = require('../models/review')
 
 
-// All Reviews Route
+// Get All Reviews
 router.get('/', async (req, res) => {
-  let query = Review.find()
-  if (req.query.title != null && req.query.title != '') {
-    query = query.regex('title', new RegExp(req.query.title, 'i'))
-  }
-  if (req.query.publishedBefore != null && req.query.publishedBefore != '') {
-    query = query.lte('releaseDate', req.query.publishedBefore)
-  }
-  if (req.query.publishedAfter != null && req.query.publishedAfter != '') {
-    query = query.gte('releaseDate', req.query.publishedAfter)
-  }
   try {
-    const reviews = await query.exec()
-    res.render('reviews/index', {
-      reviews: reviews,
-      searchOptions: req.query
+    const review = await Review.find({})
+    res.render('review/index', {
+      reviews: review
     })
   } catch {
-    res.redirect('/')
+    res.redirect('index')
   }
 })
 
@@ -47,24 +22,23 @@ router.get('/new', async (req, res) => {
 })
 
 // Create Review Route
-router.post('/', upload.single('cover'), async (req, res) => {
-  //Check if file exists, get name if one does
-  const fileName = req.file != null ? req.filename : null
+router.post('/', async (req, res) => {
+  console.log(req.body);
 
   const review = new Review({
     title: req.body.title,
     genre: req.body.genre,
-    releaseDate: new Date(req.body.releaseDate),
+    releaseDate: new Date(req.body.releaseDate),//Need to conver, req.body gives a string
     score: req.body.score,
-    coverImageName: fileName,
     rev: req.body.rev
   })
-  //saveCover(review, req.body.cover)
+
+  review.releaseDate.toISOString().split('T')[0]
 
   try {
     const newReview = await review.save()
     //res.redirect(`reviews/${newReview.id}`)
-    res.redirect('/')
+    res.redirect('review')
   } catch {
     renderNewPage(res, review, true)
   }
@@ -76,7 +50,7 @@ router.get('/:id', async (req, res) => {
     const review = await Review.findById(req.params.id)
                            .populate('genre')
                            .exec()
-    res.render('reviews/show', { review: review })
+    res.render('review/', { review: review })
   } catch {
     res.redirect('/')
   }
@@ -103,15 +77,16 @@ router.put('/:id', async (req, res) => {
     review.releaseDate = new Date(req.body.releaseDate)
     review.score = req.body.score
     review.rev = req.body.rev
-    if (req.body.cover != null && req.body.cover !== '') {
-      saveCover(review, req.body.cover)
-    }
+
     await review.save()
-    res.redirect(`/reviews/${review.id}`)
-  } catch {
+    res.redirect(`/review/${review.id}`)
+  } 
+  catch {
     if (review != null) {
       renderEditPage(res, review, true)
-    } else {
+    } 
+    
+    else {
       redirect('/')
     }
   }
@@ -120,13 +95,14 @@ router.put('/:id', async (req, res) => {
 // Delete Review Page
 router.delete('/:id', async (req, res) => {
   let review
+
   try {
     review = await Review.findById(req.params.id)
     await review.remove()
-    res.redirect('/reviews')
+    res.redirect('/review')
   } catch {
     if (review != null) {
-      res.render('reviews/show', {
+      res.render('review/', {
         review: review,
         errorMessage: 'Could not remove review'
       })
@@ -135,6 +111,7 @@ router.delete('/:id', async (req, res) => {
     }
   }
 })
+
 
 async function renderNewPage(res, review, hasError = false) {
   renderFormPage(res, review, 'new', hasError)
@@ -146,9 +123,10 @@ async function renderEditPage(res, review, hasError = false) {
 
 async function renderFormPage(res, review, form, hasError = false) {
   try {
-    const genres = await Genre.find({})
+    //Get genre
+    const genre = await Genre.find({})
     const params = {
-      genres: genres,
+      genre: genre,
       review: review
     }
     if (hasError) {
@@ -158,18 +136,9 @@ async function renderFormPage(res, review, form, hasError = false) {
         params.errorMessage = 'Error Creating Review'
       }
     }
-    res.render(`reviews/${form}`, params)
+    res.render(`review/${form}`, params)
   } catch {
-    res.redirect('/reviews')
-  }
-}
-
-function saveCover(review, coverEncoded) {
-  if (coverEncoded == null) return
-  const cover = JSON.parse(coverEncoded)
-  if (cover != null && imageMimeTypes.includes(cover.type)) {
-    review.coverImage = new Buffer.from(cover.data, 'base64')
-    review.coverImageType = cover.type
+    res.redirect('/review')
   }
 }
 

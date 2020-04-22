@@ -1,19 +1,14 @@
-  
-const express = require('express')
+  const express = require('express')
 const router = express.Router()
 const Genre = require('../models/genre')
 const Review = require('../models/review')
 
-// All Genres Route, displays genres
+// All genre Route, displays genre
 router.get('/', async (req, res) => {
-  /*let searchOptions = {}
-  if (req.query.name != null && req.query.name !== '') {
-    searchOptions.name = new RegExp(req.query.name, 'i')
-  }*/
   try {
-    const genres = await Genre.find({})
-    res.render('genres/index', {
-      genres: genres
+    const genre = await Genre.find({})
+    res.render('genre/index', {
+      genre: genre
     })
   } catch {
     res.redirect('/')
@@ -22,7 +17,7 @@ router.get('/', async (req, res) => {
 
 // New Genre Route
 router.get('/new', (req, res) => {
-  res.render('genres/new', { genre: new Genre() })
+  res.render('genre/new', { genre: new Genre() })
 })
 
 // Create Genre Route
@@ -33,10 +28,10 @@ router.post('/', async (req, res) => {
 
   try {
     const newGenre = await genre.save()
-    //res.redirect(`genres/${newGenre.id}`)
+    //res.redirect(`genre/${newGenre.id}`)
     res.redirect(`genre`)
   } catch {
-    res.render('genres/new', {
+    res.render('genre/new', {
       genre: genre,
       errorMessage: 'Error creating Genre'
     })
@@ -47,7 +42,7 @@ router.get('/:id', async (req, res) => {
   try {
     const genre = await Genre.findById(req.params.id)
     const reviews = await Review.find({ genre: genre.id }).limit(6).exec()
-    res.render('genres/show', {
+    res.render('genre/show', {
       genre: genre,
       reviewsByGenre: reviews
     })
@@ -59,24 +54,25 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   try {
     const genre = await Genre.findById(req.params.id)
-    res.render('genres/edit', { genre: genre })
+    res.render('genre/edit', { genre: genre })
   } catch {
-    res.redirect('/genres')
+    res.redirect('/genre')
   }
 })
 
+//Update Genre page
 router.put('/:id', async (req, res) => {
   let genre
   try {
     genre = await Genre.findById(req.params.id)
     genre.name = req.body.name
-    await genre.save()
-    res.redirect(`/genres/${genre.id}`)
+    await genre.save()//save editted info
+    res.redirect(`/genre`)//Return to Genre index
   } catch {
     if (genre == null) {
-      res.redirect('/')
+      res.redirect('/genre')
     } else {
-      res.render('genres/edit', {
+      res.render('genre/edit', {
         genre: genre,
         errorMessage: 'Error updating Genre'
       })
@@ -84,17 +80,18 @@ router.put('/:id', async (req, res) => {
   }
 })
 
+//Delete Genre
 router.delete('/:id', async (req, res) => {
   let genre
   try {
     genre = await Genre.findById(req.params.id)
     await genre.remove()
-    res.redirect('/genres')
+    res.redirect('/genre')
   } catch {
     if (genre == null) {
       res.redirect('/')
     } else {
-      res.redirect(`/genres/${genre.id}`)
+      res.redirect(`/genre/${genre.id}`)
     }
   }
 })

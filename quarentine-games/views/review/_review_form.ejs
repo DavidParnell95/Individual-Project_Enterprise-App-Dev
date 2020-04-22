@@ -1,0 +1,40 @@
+<div><br>
+    <div class="form-item">
+      <label>Title:</label><br>
+      <input type="text" name="title" value="<%= review.title %>"><br>
+    </div>
+  
+    <div class="form-item">
+      <label>Genre:</label><br>
+      <!-- Gets genre from DB and displays them as drop down options -->
+      
+      <select name="genre">
+      <% genre.forEach(genre => { %>
+        <% if (genre.id === review.genre) { %>
+          <option selected label="<%= genre.name %>" value="<%= genre.id %>">
+        <% } else { %>
+          <option label="<%= genre.name %>" value="<%= genre.id %>">
+        <% } %>
+      <% }) %>
+      </select><br>
+    </div>
+    
+    <div class="form-item">
+      <label>Release Date:</label><br>
+      <!-- Splits on T to remove time information, ensures mm/dd/yyyy format-->
+      <input type="date" name="releaseDate"
+          value="<%= review.releaseDate == null ? '' : 
+          review.releaseDate.toISOString().split('T')[0] %>">
+    </div><br>
+
+    <div class="form-item">
+      <label>Score:</label>
+      <input type="number" name="score" min="1" max="10" value="<%= review.score %>"><br>
+    </div><br>
+
+    <div class="form-item">
+      <label>Review:</label><br>
+      <textarea name="rev" rows="6" cols="50"><%= review.rev %></textarea>
+    </div><br>
+
+</div>

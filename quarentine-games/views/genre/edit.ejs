@@ -1,0 +1,14 @@
+<div class="section">
+  <h2 class="page-header">Edit Genre</h2>
+  
+  <form action="/genre/<%= genre.id %>?_method=PUT" method="POST">
+  
+    <%- include('_genre_form') %>
+  
+    <div class="form-row form-row-end btn-row">
+      <a class="site-btn" style="background-color: red;" href="/genre/">Cancel</a>
+      <button class="site-btn" type="submit">Update</button>
+    </div>
+  </form>
+  
+</div>

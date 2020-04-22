@@ -34,30 +34,7 @@ body {
 	padding-bottom: 10px;
 }
 
-.head{
-	background-color: rgba(53,53,53);
-}
 
-.loginForm{
-	padding-top: 150px;
-	padding-bottom: 50px;
-}
-
-.registerForm{
-	padding-top: 150px;
-	padding-bottom: 50px;
-}
-
-.section{
-	padding-top: 150px;
-	padding-bottom: 50px;
-	padding-left: 25px;
-	height: inherit;
-}
-
-.row{
-	width: 100%;
-}
 
 
 h1,
@@ -81,10 +58,12 @@ h2 {
 
 h3 {
 	font-size: 30px;
+	
 }
 
 h4 {
 	font-size: 24px;
+	color: white;
 }
 
 h5 {
@@ -97,8 +76,11 @@ h6 {
 
 p {
 	font-size: 16px;
-	color: #8c8c8c;
 	line-height: 1.8;
+}
+
+.rev{
+	color: white;
 }
 
 img {
@@ -169,80 +151,7 @@ Helper CSS
 Commom elements
  -----------------------*/
 
-/* buttons */
 
-.site-btn {
-	display: inline-block;
-	border: none;
-	font-size: 14px;
-	font-weight: 600;
-	min-width: 164px;
-	padding: 21px 47px;
-	border-radius: 50px;
-	text-transform: uppercase;
-	background: #10ddb4;
-	color: #161616;
-	line-height: 1;
-	cursor: pointer;
-	text-align: center;
-}
-
-.site-btn:hover {
-	color: #161616;
-}
-
-.site-btn.sb-color {
-	background: #ff1f56;
-	color: #fff;
-}
-
-.site-btn.sb-color:hover {
-	color: #fff;
-}
-
-.btn-row{
-	max-height: 50px;
-	float: left;
-	padding-left: 20px;
-}
-
-.genre-btn{
-	display: inline-block;
-    border: none;
-    font-size: 12px;
-    font-weight: 600;
-    min-width: 80px;
-    padding: 19px 20px;
-    border-radius: 25px;
-    text-transform: uppercase;
-    background: red;
-    color: #ffffff;
-    line-height: 1;
-    cursor: pointer;
-    text-align: center;	
-}
-
-.del-btn{
-	max-height: 50px;
-	max-width: 100px;
-}
-
-.genre-name{
-	float: left;
-
-}
-
-.card {
-	float: left;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	transition: 0.3s;
-	width: 10%;
-	height: 180px;
-  }
-  
-  .card:hover {
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
 
 /* Preloder */
 
@@ -990,6 +899,7 @@ Footer section
 .footer-section {
 	background: #000000;
 	padding-top: 73px;
+	color: white;
 }
 
 .footer-widget {
@@ -1000,7 +910,6 @@ Footer section
 	font-size: 18px;
 	font-weight: 700;
 	color: #fff;
-	padding-top: 42px;
 	margin-bottom: 44px;
 }
 
